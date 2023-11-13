@@ -17,7 +17,9 @@
     <h2>株式会社 ヒューマンアカデミー</h2>
     <p th:text="'こんにちは, ' + ${id} + 'さん!'"></p>
     <p>状態：??</p>
+    <form method="post" action="/attendanceInput">
     <button type="button" class="start" name="start" value="value">　出勤　</button>
+    </form>
     <button type="button" class="end" name="end" value="value">　退勤　</button>
     <p>
     <button type="button" name="breakstart" value="value">休憩開始</button>

@@ -12,6 +12,16 @@
 <h1>勤怠状況一覧</h1>
 <table border="1">
     <tr><th>氏名</th><th>開始</th><th>終了</th><th>ステータス</th><th>勤務場所</th></tr>
+    <th:block th:each="attendance : ${attendances}">
+        <tr>
+            <td th:text="${attendance.id}"></td>
+            <td th:text="${attendance.begin_time}"></td>
+            <td th:text="${attendance.end_time}"></td>
+            <td>退勤済み</td>
+            <td>自宅</td>
+        </tr>
+    </th:block>
+    <!--<tr><td>ななしのごんべえ</td><td>9:00</td><td>18:00</td><td>退勤済み</td><td>自宅</td></tr>
     <tr><td>ななしのごんべえ</td><td>9:00</td><td>18:00</td><td>退勤済み</td><td>自宅</td></tr>
     <tr><td>ななしのごんべえ</td><td>9:00</td><td>18:00</td><td>退勤済み</td><td>自宅</td></tr>
     <tr><td>ななしのごんべえ</td><td>9:00</td><td>18:00</td><td>退勤済み</td><td>自宅</td></tr>
@@ -21,8 +31,7 @@
     <tr><td>ななしのごんべえ</td><td>9:00</td><td>18:00</td><td>退勤済み</td><td>自宅</td></tr>
     <tr><td>ななしのごんべえ</td><td>9:00</td><td>18:00</td><td>退勤済み</td><td>自宅</td></tr>
     <tr><td>ななしのごんべえ</td><td>9:00</td><td>18:00</td><td>退勤済み</td><td>自宅</td></tr>
-    <tr><td>ななしのごんべえ</td><td>9:00</td><td>18:00</td><td>退勤済み</td><td>自宅</td></tr>
-
+-->
 </table>
 <a href="attendanceList">戻ろう</a>
 </body>
