@@ -3,7 +3,6 @@
 <head>
     <title>出勤ボタンページ</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="/style.css" type="text/css">
 </head>
@@ -50,10 +49,22 @@
             <td th:text="${attendance.end}"></td>
             <td th:text="${attendance.break_start}"></td>
             <td th:text="${attendance.break_end}"></td>
-            <td th:text="${attendance.time}">合計　７＞超えるとー１</td>
+            <td th:text="${totalTime(attendance.start, attendance.end)}"></td>
         </tr>
     </th:block>
 </table>
 <a href="attendanceList">戻ろう</a>
+<script>
+ function totalTime(start, end) {
+        if (!end) {
+            return 0;
+        }
+        const startObj = new Date(`1970-01-01 ${start}`);
+        const endObj = new Date(`1970-01-01 ${end}`);
+        let diffInHours = (endObj - startObj) / (1000 * 60 * 60);
+
+        return diffInHours >= 7 ? diffInHours - 1 : diffInHours;
+    }
+</script>
 </body>
 </html>
