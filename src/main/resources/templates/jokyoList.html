@@ -2,36 +2,57 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>出勤ボタンページ</title>
-    <mata charste="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE-edge">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
-        <link rel="stylesheet" href="/style.css" type="text/css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css" type="text/css">
 </head>
 <body>
-<h1>勤怠状況一覧</h1>
-<table border="1">
-    <tr><th>氏名</th><th>開始</th><th>終了</th><th>ステータス</th><th>勤務場所</th></tr>
+<div style="text-align: center">
+    <h1>打刻履歴</h1>
+    <h1>
+        <div id="current_date"></div>
+        <script>
+            function updateCurrentDateTime() {
+                const currentDateElement = document.getElementById("current_date");
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = (now.getMonth() + 1).toString().padStart(2, '0');
+                const day = now.getDate().toString().padStart(2, '0');
+                const hour = now.getHours().toString().padStart(2, '0');
+                const minute = now.getMinutes().toString().padStart(2, '0');
+                const second = now.getSeconds().toString().padStart(2, '0');
+                currentDateElement.innerHTML = `${year}/${month}/${day} ${hour}:${minute}:${second}`;
+            }
+
+            setInterval(updateCurrentDateTime, 1000);
+
+            updateCurrentDateTime();
+        </script>
+    </h1>
+</div>
+
+<table align="center" width="70%" border="1" cellspacing="0">
+    <tr>
+        <th>氏名</th>
+        <th>日付</th>
+        <th>出勤</th>
+        <th>退勤</th>
+        <th>休憩開始</th>
+        <th>休憩終了</th>
+        <th>合計労働時間</th>
+    </tr>
     <th:block th:each="attendance : ${attendances}">
         <tr>
             <td th:text="${attendance.id}"></td>
-            <td th:text="${attendance.begin_time}"></td>
-            <td th:text="${attendance.end_time}"></td>
-            <td>退勤済み</td>
-            <td>自宅</td>
+            <td th:text="${attendance.date}"></td>
+            <td th:text="${attendance.start}"></td>
+            <td th:text="${attendance.end}"></td>
+            <td th:text="${attendance.break_start}"></td>
+            <td th:text="${attendance.break_end}"></td>
+            <td th:text="${attendance.time}">合計　７＞超えるとー１</td>
         </tr>
     </th:block>
-    <!--<tr><td>ななしのごんべえ</td><td>9:00</td><td>18:00</td><td>退勤済み</td><td>自宅</td></tr>
-    <tr><td>ななしのごんべえ</td><td>9:00</td><td>18:00</td><td>退勤済み</td><td>自宅</td></tr>
-    <tr><td>ななしのごんべえ</td><td>9:00</td><td>18:00</td><td>退勤済み</td><td>自宅</td></tr>
-    <tr><td>ななしのごんべえ</td><td>9:00</td><td>18:00</td><td>退勤済み</td><td>自宅</td></tr>
-    <tr><td>ななしのごんべえ</td><td>9:00</td><td>18:00</td><td>退勤済み</td><td>自宅</td></tr>
-    <tr><td>ななしのごんべえ</td><td>9:00</td><td>18:00</td><td>退勤済み</td><td>自宅</td></tr>
-    <tr><td>ななしのごんべえ</td><td>9:00</td><td>18:00</td><td>退勤済み</td><td>自宅</td></tr>
-    <tr><td>ななしのごんべえ</td><td>9:00</td><td>18:00</td><td>退勤済み</td><td>自宅</td></tr>
-    <tr><td>ななしのごんべえ</td><td>9:00</td><td>18:00</td><td>退勤済み</td><td>自宅</td></tr>
-    <tr><td>ななしのごんべえ</td><td>9:00</td><td>18:00</td><td>退勤済み</td><td>自宅</td></tr>
--->
 </table>
 <a href="attendanceList">戻ろう</a>
 </body>
