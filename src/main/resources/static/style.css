@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 body{
-    background:#e4ffff;   /*背景色*/
+    background:#333333;   /*背景色*/
     color:#2c2c2c;           /*文字色*/
     font-size:11pt;         /*フォントサイズ*/
     line-height:1.6;        /*行の高さ*/
@@ -9,7 +9,8 @@ body{
 
 /*見出し*/
 h1{
-    background:#90c7ff;   /*背景色*/
+    background:#ffffff;   /*背景色*/
+    color:#1a1a1a;           /*文字色*/
     font: size 14px;        /*フォントサイズ*/
     text-align:center;      /*センタリング*/
     border-top:solid 2px #e6e6e6; /*枠線を引いて立体感出す*/
@@ -17,34 +18,48 @@ h1{
     border-bottom:solid 3px #787836;
     border-right:solid 3px #787836;
 }
+/*会社名*/
 h2{
+    color:#ffffff;
+}
+h3{
     font-size:14pt;
+    color:#ffffff;
     border-left:solid 9.5px #336899;
     padding-left:10px;
-}
-
-table{
-    border-collapse: collapse; /*隣り合ったセルの枠線を重ねて表示*/
-    border-spacing: 0;         /*距離を0に*/
-}
-
-td{
-    border:solid 1px;          /*枠線を1ピクセルの直線で*/
-    padding:5px;               /*枠線とセル要素の間に余白*/
 }
 
 button {
   appearance: none;
   border: 2;
-  border-radius: 5px;
-  color: #fff;
-  padding: 16px 24px;
-  font-size: 24px;
+  border-radius: 15px;
+  padding: 20px 30px;
+  font-size: 40px;
+  box-shadow: 0 4px 0 #dcdcdc; /* 影の太さ・色 */
+  box-shadow: none;
+  transform: translateY(5px);
 }
-
+.open {
+   background: #b4e0d9;
+   font-size: 20px;
+}
 .start {
-   background: #000000;
+   background: #00bfff;　/* 出勤ボタンの色 */
+   font-size: 40px;
 }
 .end {
-   background: #ffffff;
+   background: #ff4500;　/* 退勤ボタンの色 */
+   font-size: 40px;
+}
+.break_start {
+   background: #708090;
+   font-size: 40px;
+}
+.break_end {
+   background: #708090;
+   font-size: 40px;
+}
+p {
+   color:#ffffff;
+   font-size: 20px;
 }

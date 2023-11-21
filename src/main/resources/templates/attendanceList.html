@@ -2,35 +2,63 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>出勤ボタンページ</title>
+    <title>マイレコーダー</title>
     <mata charste="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE-edge">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
-    <link rel="stylesheet" href="/style.css" type="text/css">
+        <link rel="stylesheet" href="/style.css" type="text/css"></mata>
 </head>
 <body>
 <!--
 <p th:text="|Hello, ${name}!|" />
 -->
-    <h1>出勤できるように頑張って作ってる出勤ボタンページ</h1>
-    <h2>株式会社 ヒューマンアカデミー</h2>
-    <p th:text="'こんにちは, ' + ${id} + 'さん!'"></p>
-    <p>状態：??</p>
+    <h1>中塚くんが、出勤できるように頑張って作ってる出勤ボタンページ 勤怠くん</h1>
+
+<p>現在時刻は<span id="real-time"></span>です</p>
+
+<script type="text/javascript">
+    function Time() {
+       var realTime = new Date();
+       var hour = realTime.getHours();
+       var minutes  = realTime.getMinutes();
+       var seconds  = realTime.getSeconds();
+       var text = hour + ":" + minutes + ":" + seconds;
+       document.getElementById("real-time").innerHTML = text;
+    }
+    setInterval('Time()',1000);
+</script>
+
+<dialog>
+    <div style="text-align: right;"><button id="close">閉じる</button></div>
+    <a href="jokyoList">勤怠状況一覧表示</a>
+    <a href="login">勤怠状況一覧表示</a></div>
+</dialog>
+<!-- モーダルウィンドウ内を開くボタンの指定 -->
+<div style="text-align: right;"><button id="open"><font size="10">メニュー</font></button></div>
+
+<script>
+    let dialog = document.querySelector('dialog'); // dialog（モーダルダイアログ）の宣言
+    let btn_open = document.getElementById('open'); // open（開く）ボタンの宣言
+    let btn_close = document.getElementById('close'); // close（閉じる）ボタンの宣言
+    btn_open.addEventListener('click', function() {
+    // 開くボタンをクリックした場合の処理
+    dialog.showModal();
+    }, false);
+    btn_close.addEventListener('click', function() {
+    // 閉じるボタンをクリックした場合の処理
+    dialog.close();
+    }, false);
+</script>
+    <h3>株式会社 ヒューマンアカデミー</h3>
+
+    <div style="text-align: center;"><h2 th:text="'こんにちは, ' + ${name} + 'さん!'"></h2></div>
+
     <form method="post" action="/attendanceInput">
-    <button type="button" class="start" name="start" value="value">　出勤　</button>
+        <div style="text-align: center;"><button type="button" class="start" name="start" value="value">　出勤　</button>
+        <button type="button" class="end" name="end" value="value">　退勤　</button>
+        <button type="button" class="break_start" name="break_start" value="value">休憩開始</button>
+        <button type="button" class="brea_kend" name="break_end" value="value">休憩終了</button></div>
     </form>
-    <button type="button" class="end" name="end" value="value">　退勤　</button>
-    <p>
-    <button type="button" name="breakstart" value="value">休憩開始</button>
-    <button type="button" name="breakend" value="value">休憩終了</button>
-    <p>
-    <ul>
-        <li><a href="jokyoList">打刻履歴</a></li>
-        <li><a href="place">勤務場所登録</a></li>
-        <li><a href="contactAddress">連絡先登録</a></li>
-        <li><a href="history">勤怠状況一覧表示</a></li>
-        <li><a href="login">ログアウト</a></li>
-    </ul>
 </body>
 </html>
