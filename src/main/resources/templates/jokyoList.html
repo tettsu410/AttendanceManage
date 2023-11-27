@@ -42,7 +42,7 @@
         <th>合計労働時間</th>
     </tr>
     <th:block th:each="attendance : ${attendances}">
-        <tr>
+        <tr th:if="${attendance.id == desiredId}">
             <td th:text="${attendance.id}"></td>
             <td th:text="${attendance.date}"></td>
             <td th:text="${attendance.start}"></td>
@@ -55,7 +55,8 @@
 </table>
 <a href="attendanceList">戻ろう</a>
 <script>
- function totalTime(start, end) {
+    var desiredId = /* ログインしたユーザーのIDを取得するコード */;
+    function totalTime(start, end) {
         if (!end) {
             return 0;
         }
