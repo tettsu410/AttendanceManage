@@ -43,11 +43,11 @@ button {
    background: #b4e0d9;
    font-size: 20px;
 }
-.start {
+.start_time {
    background: #00bfff;　/* 出勤ボタンの色 */
    font-size: 40px;
 }
-.end {
+.end_time {
    background: #ff4500;　/* 退勤ボタンの色 */
    font-size: 40px;
 }

@@ -17,7 +17,7 @@ public class AttendanceListController {
 
     @GetMapping("/attendanceList")
     public String attendances(Model model) {
-        String sql = "SELECT id, begin_time, end_time FROM ATTENDANCES";
+        String sql = "SELECT id, start_time, end_time FROM ATTENDANCES";
         List<Attendance> attendances = jdbcTemplate.query(sql,new DataClassRowMapper<>(Attendance.class));
         model.addAttribute("attendances",attendances);
         return "attendanceList";

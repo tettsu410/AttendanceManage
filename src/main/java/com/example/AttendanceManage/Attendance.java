@@ -4,7 +4,7 @@ import java.sql.Time;
 
 public class Attendance {
     private int id;
-    private Time begin_time;
+    private Time start_time;
 
     private Time end_time;
 
@@ -17,11 +17,11 @@ public class Attendance {
     }
 
     public Time getBegin_time() {
-        return begin_time;
+        return start_time;
     }
 
     public void setBegin_time(Time begin_time) {
-        this.begin_time = begin_time;
+        this.start_time = start_time;
     }
 
     public Time getEnd_time() {

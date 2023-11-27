@@ -17,8 +17,8 @@ public class AttendanceInputController {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalTime currentTime = LocalTime.now();
         Time time = Time.valueOf(currentTime.format(dtf));
-        jdbcTemplate.update("INSERT INTO attendances (id,begin_time) VALUES (?,?)",
-                5,time);
+        jdbcTemplate.update("INSERT INTO attendances (id,start_time) VALUES (?,?)", 5,time);
         return "redirect:/jokyoList";
     }
+
 }

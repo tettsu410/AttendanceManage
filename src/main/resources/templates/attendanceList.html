@@ -8,26 +8,37 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
         <link rel="stylesheet" href="/style.css" type="text/css"></mata>
+
+    <script>
+        function twoDigit(num) {
+          let ret;
+          if( num < 10 )
+            ret = "0" + num;
+          else
+            ret = num;
+          return ret;
+        }
+        function showClock() {
+          let nowTime = new Date();
+          let nowHour = twoDigit( nowTime.getHours() );
+          let nowMin  = twoDigit( nowTime.getMinutes() );
+          let nowSec  = twoDigit( nowTime.getSeconds() );
+          let msg = "現在時刻：" + nowHour + ":" + nowMin + ":" + nowSec;
+          document.getElementById("realtime").innerHTML = msg;
+        }
+        setInterval('showClock()',1000);
+
+        function start(value) {
+          alert(value + "に出勤しました");
+        }
+    </script>
 </head>
 <body>
 <!--
 <p th:text="|Hello, ${name}!|" />
 -->
     <h1>中塚くんが、出勤できるように頑張って作ってる出勤ボタンページ 勤怠くん</h1>
-
-<p>現在時刻は<span id="real-time"></span>です</p>
-
-<script type="text/javascript">
-    function Time() {
-       var realTime = new Date();
-       var hour = realTime.getHours();
-       var minutes  = realTime.getMinutes();
-       var seconds  = realTime.getSeconds();
-       var text = hour + ":" + minutes + ":" + seconds;
-       document.getElementById("real-time").innerHTML = text;
-    }
-    setInterval('Time()',1000);
-</script>
+<p id="realtime"></p>
 
 <dialog>
     <div style="text-align: right;"><button id="close">閉じる</button></div>
@@ -55,10 +66,12 @@
     <div style="text-align: center;"><h2 th:text="'こんにちは, ' + ${name} + 'さん!'"></h2></div>
 
     <form method="post" action="/attendanceInput">
-        <div style="text-align: center;"><button type="button" class="start" name="start" value="value">　出勤　</button>
-        <button type="button" class="end" name="end" value="value">　退勤　</button>
-        <button type="button" class="break_start" name="break_start" value="value">休憩開始</button>
-        <button type="button" class="brea_kend" name="break_end" value="value">休憩終了</button></div>
+        <div style="text-align: center;">
+            <button type="button" class="start_time" name="start_time" value="realtime" onclick="start(value)">　出勤　</button>
+            <button type="button" class="end_time" name="end_time" value="realtime">　退勤　</button>
+            <button type="button" class="break_start" name="break_start" value="realtime">休憩開始</button>
+            <button type="button" class="break_end" name="break_end" value="realtime">休憩終了</button>
+        </div>
     </form>
 </body>
 </html>
