@@ -18,7 +18,6 @@ public class AttendanceInputController {
         LocalTime currentTime = LocalTime.now();
         Time time = Time.valueOf(currentTime.format(dtf));
         jdbcTemplate.update("INSERT INTO attendances (id,start_time) VALUES (?,?)", 5,time);
-        return "redirect:/jokyoList";
+        return "redirect:/attendanceList";
     }
-
 }
