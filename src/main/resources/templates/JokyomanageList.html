@@ -42,7 +42,7 @@
         <th>合計労働時間</th>
     </tr>
     <th:block th:each="attendance : ${attendances}">
-        <tr th:if="${attendance.id == desiredId}">
+        <tr>
             <td th:text="${attendance.id}"></td>
             <td th:text="${attendance.date}"></td>
             <td th:text="${attendance.start}"></td>
@@ -55,7 +55,6 @@
 </table>
 <a href="attendanceList">戻ろう</a>
 <script>
-    var desiredId = /* ログインしたユーザーのID(セッション内から選択されたユーザー） */;
     function totalTime(start, end, breakStart, breakEnd) {
         if (!end) {
             return 0;
@@ -69,7 +68,8 @@
         const breakMinutes = (breakEnd - breakStart) / (1000 * 60);
 
         let totalMinutes = workMinutes - breakMinutes;
-        totalMinutes = Math.max(totalMinutes, 0);
+
+　　　　　totalMinutes = Math.max(totalMinutes, 0);
         return totalMinutes;
     }
 </script>
