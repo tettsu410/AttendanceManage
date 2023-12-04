@@ -33,8 +33,16 @@ public class Sample01Controller {
             return "sample01";
         } else {
             // セッションがある場合はセッションへデータをセットする
-            String test = myForm.getUserId();
-            session.setAttribute("test", test);
+
+            // SpringBootでは@ModelAttributeを使用することでHTMLのFormタグで入力されたデータを
+            // 指定したクラスから生成されたインスタンスの属性に自動的に代入することができる。
+            // 例）sample01.htmlのformで入力された値をSampleFormクラスのインスタンスmyFormにセットする
+            String id = myForm.getUserId();
+            String name = myForm.getUserName();
+
+            // セッションにFormで入力された値を追加する
+            session.setAttribute("userId", id);
+            session.setAttribute("userName", name);
 
             // sample02を呼び出す
             return "redirect:/sample02";
