@@ -55,7 +55,7 @@
 </table>
 <a href="attendanceList">戻ろう</a>
 <script>
-    var desiredId = /* ログインしたユーザーのID(セッションがないから選択されたユーザー） */;
+    var desiredId = /* ログインしたユーザーのID(セッション内から選択されたユーザー） */;
     function totalTime(start, end, breakStart, breakEnd) {
         if (!end) {
             return 0;
@@ -69,11 +69,7 @@
         const breakMinutes = (breakEnd - breakStart) / (1000 * 60);
 
         let totalMinutes = workMinutes - breakMinutes;
-
-        if (breakMinutes >= 7 * 60) {
-        totalMinutes -= 60;
-        }
-
+        totalMinutes = Math.max(totalMinutes, 0);
         return totalMinutes;
     }
 </script>

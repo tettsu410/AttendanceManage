@@ -8,7 +8,7 @@
 </head>
 <body>
 <div style="text-align: center">
-    <h1>打刻履歴 管理</h1>
+    <h1>打刻履歴</h1>
     <h1>
         <div id="current_date"></div>
         <script>
@@ -42,27 +42,35 @@
         <th>合計労働時間</th>
     </tr>
     <th:block th:each="attendance : ${attendances}">
+        <tr>
             <td th:text="${attendance.id}"></td>
             <td th:text="${attendance.date}"></td>
             <td th:text="${attendance.start}"></td>
             <td th:text="${attendance.end}"></td>
             <td th:text="${attendance.break_start}"></td>
             <td th:text="${attendance.break_end}"></td>
-            <td th:text="${totalTime(attendance.start, attendance.end)}"></td>
+            <td th:text="${totalTime(attendance.start, attendance.end, attendance.break_start, attendance.break_end)}"></td>
         </tr>
     </th:block>
 </table>
 <a href="attendanceList">戻ろう</a>
 <script>
-    function totalTime(start, end) {
+    function totalTime(start, end, breakStart, breakEnd) {
         if (!end) {
             return 0;
         }
-        const startObj = new Date(`1970-01-01 ${start}`);
-        const endObj = new Date(`1970-01-01 ${end}`);
-        let diffInHours = (endObj - startObj) / (1000 * 60 * 60);
+        const start = new Date(`1970-01-01 ${start}`);
+        const end = new Date(`1970-01-01 ${end}`);
+        const breakStart = new Date(`1970-01-01 ${breakStart}`);
+        const breakEnd = new Date(`1970-01-01 ${breakEnd}`);
 
-        return diffInHours >= 7 ? diffInHours - 1 : diffInHours;
+        const workMinutes = (end - start) / (1000 * 60);
+        const breakMinutes = (breakEnd - breakStart) / (1000 * 60);
+
+        let totalMinutes = workMinutes - breakMinutes;
+
+　　　　　totalMinutes = Math.max(totalMinutes, 0);
+        return totalMinutes;
     }
 </script>
 </body>
