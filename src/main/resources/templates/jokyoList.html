@@ -45,8 +45,8 @@
         <tr th:if="${attendance.id == desiredId}">
             <td th:text="${attendance.id}"></td>
             <td th:text="${attendance.date}"></td>
-            <td th:text="${attendance.start}"></td>
-            <td th:text="${attendance.end}"></td>
+            <td th:text="${attendance.start_time}"></td>
+            <td th:text="${attendance.end_time}"></td>
             <td th:text="${attendance.break_start}"></td>
             <td th:text="${attendance.break_end}"></td>
             <td th:text="${totalTime(attendance.start, attendance.end, attendance.break_start, attendance.break_end)}"></td>
