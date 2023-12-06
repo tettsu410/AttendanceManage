@@ -8,75 +8,153 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <link rel="stylesheet" href="/style.css" type="text/css"></mata>
 
+    <script type="text/javascript">
+        var now = new Date();
+        var Y = now.getFullYear();
+        var M = now.getMonth() + 1;
+        var D = now.getDate();
+        var W = now.getDay();
+        var DotW = ['日', '月', '火', '水', '木', '金', '土'];
+        document.getElementById('ShowDateYMDW').innerHTML = Y + '年' + M + '月' + D + '日' + '(' + DotW[W] + ')';
+    </script>
     <script>
         function twoDigit(num) {
-          let ret;
-          if( num < 10 )
+            let ret;
+            if( num < 10 )
             ret = "0" + num;
-          else
+            else
             ret = num;
-          return ret;
+            return ret;
         }
+
         function showClock() {
-          let nowTime = new Date();
-          let nowHour = twoDigit( nowTime.getHours() );
-          let nowMin  = twoDigit( nowTime.getMinutes() );
-          let nowSec  = twoDigit( nowTime.getSeconds() );
-          let msg = nowHour + ":" + nowMin + ":" + nowSec;
-          document.getElementById("realtime").innerHTML = msg;
+            let nowTime = new Date();
+            let nowHour = twoDigit( nowTime.getHours() );
+            let nowMin  = twoDigit( nowTime.getMinutes() );
+            let nowSec  = twoDigit( nowTime.getSeconds() );
+            let msg2 = nowHour + ":" + nowMin + ":" + nowSec;
+            document.getElementById("realtime").innerHTML = msg2;
         }
         setInterval('showClock()',1000);
 
         function start() {
-            let form = document.getElementById('form');
+            let form = document.getElementById('startform');
             form.submit();
             alert(document.getElementById("realtime").innerHTML + "に出勤しました");
+        }
+        function end() {
+            let form = document.getElementById('endform');
+            form.submit();
+            alert(document.getElementById("realtime").innerHTML + "に退勤しました");
+        }
+        function breakstart() {
+            let form = document.getElementById('breakstartform');
+            form.submit();
+            alert(document.getElementById("realtime").innerHTML + "に休憩開始しました");
+        }
+        function breakend() {
+            let form = document.getElementById('breakendform');
+            form.submit();
+            alert(document.getElementById("realtime").innerHTML + "に休憩終了しました");
         }
     </script>
 </head>
 
 <body>
-<!--
-<p th:text="|Hello, ${name}!|" />
--->
     <h1>勤怠管理「AttendanceManage」</h1>
-    <h2 id="realtime">時刻未取得</h2>
-
-<dialog>
-    <div style="text-align: right;">
-        <button id="close">閉じる</button></div>
+    <h3>株式会社 ヒューマンアカデミー</h3>
+    <dialog>
+        <div style="text-align: right;">
+            <button id="close">閉じる</button></div>
         <a href="jokyoList">勤怠状況一覧表示</a>
         <a href="login">ログアウト</a>
-    </div>
-</dialog>
-<!-- モーダルウィンドウ内を開くボタンの指定 -->
-<div style="text-align: right;"><button id="open"><font size="10">メニュー</font></button></div>
-
-<script>
-    let dialog = document.querySelector('dialog'); // dialog（モーダルダイアログ）の宣言
-    let btn_open = document.getElementById('open'); // open（開く）ボタンの宣言
-    let btn_close = document.getElementById('close'); // close（閉じる）ボタンの宣言
-    btn_open.addEventListener('click', function() {
-    // 開くボタンをクリックした場合の処理
-    dialog.showModal();
-    }, false);
-    btn_close.addEventListener('click', function() {
-    // 閉じるボタンをクリックした場合の処理
-    dialog.close();
-    }, false);
-</script>
-
-    <h3>株式会社 ヒューマンアカデミー</h3>
-
-    <div style="text-align: center;"><h2 th:text="'こんにちは, ' + ${name} + 'さん!'"></h2></div>
-
-    <form id="form" method="post" action="/attendanceInput">
-        <div style="text-align: center;">
-            <button type="button" class="start_time" name="start_time" value="realtime" onclick="start()">　出勤　</button>
-            <button type="button" class="end_time" name="end_time" value="realtime">　退勤　</button>
-            <button type="button" class="break_start" name="break_start" value="realtime">休憩開始</button>
-            <button type="button" class="break_end" name="break_end" value="realtime">休憩終了</button>
         </div>
-    </form>
+    </dialog>
+    <!-- モーダルウィンドウ内を開くボタンの指定 -->
+    <div style="text-align: right;"><button id="open">⊟</button></div>
+
+    <script>
+        let dialog = document.querySelector('dialog'); // dialog（モーダルダイアログ）の宣言
+        let btn_open = document.getElementById('open'); // open（開く）ボタンの宣言
+        let btn_close = document.getElementById('close'); // close（閉じる）ボタンの宣言
+        btn_open.addEventListener('click', function() {
+        // 開くボタンをクリックした場合の処理
+        dialog.showModal();
+        }, false);
+        btn_close.addEventListener('click', function() {
+        // 閉じるボタンをクリックした場合の処理
+        dialog.close();
+        }, false);
+    </script>
+
+    <div style="text-align: center;"><h2>こんにちは,今日も頑張って下さい</h2><h2 id="realtime">時刻取得中…</h2></div>
+
+    <div style="text-align: center;">
+        <table>
+        <tr>
+            <th><form id="startform" method="post" action="/attendanceInput">
+                <button type="button" class="start_time" name="start_time" value="realtime" onclick="start()">　出勤　</button><br>
+                <select name="userId" class="name_pd1">
+                    <option value="1">ユーザー1</option>
+                    <option value="2">ユーザー2</option>
+                    <option value="3">ユーザー3</option>
+                    <option value="4">ユーザー4</option>
+                    <option value="5">ユーザー5</option>
+                    <option value="6">ユーザー6</option>
+                    <option value="7">ユーザー7</option>
+                    <option value="8">ユーザー8</option>
+                    <option value="9">ユーザー9</option>
+                    <option value="10">ユーザー10</option>
+                </select>
+            </form></th>
+            <th><form id="endform" method="post" action="/attendanceEnd">
+                <button type="button" class="end_time" name="end_time" value="realtime" onclick="end()">　退勤　</button><br>
+                <select name="userId">
+                    <option value="1">ユーザー1</option>
+                    <option value="2">ユーザー2</option>
+                    <option value="3">ユーザー3</option>
+                    <option value="4">ユーザー4</option>
+                    <option value="5">ユーザー5</option>
+                    <option value="6">ユーザー6</option>
+                    <option value="7">ユーザー7</option>
+                    <option value="8">ユーザー8</option>
+                    <option value="9">ユーザー9</option>
+                    <option value="10">ユーザー10</option>
+                </select>
+            </form></th>
+            <th><form id="breakstartform" method="post" action="/attendanceBreakStart">
+                <button type="button" class="break_start" name="break_start" value="realtime" onclick="breakstart()">休憩開始</button><br>
+                <select name="userId">
+                    <option value="1">ユーザー1</option>
+                    <option value="2">ユーザー2</option>
+                    <option value="3">ユーザー3</option>
+                    <option value="4">ユーザー4</option>
+                    <option value="5">ユーザー5</option>
+                    <option value="6">ユーザー6</option>
+                    <option value="7">ユーザー7</option>
+                    <option value="8">ユーザー8</option>
+                    <option value="9">ユーザー9</option>
+                    <option value="10">ユーザー10</option>
+                </select>
+            </form></th>
+            <th><form id="breakendform" method="post" action="/attendanceBreakEnd">
+                <button type="button" class="break_end" name="break_end" value="realtime" onclick="breakend()">休憩終了</button><br>
+                <select name="userId">
+                    <option value="1">ユーザー1</option>
+                    <option value="2">ユーザー2</option>
+                    <option value="3">ユーザー3</option>
+                    <option value="4">ユーザー4</option>
+                    <option value="5">ユーザー5</option>
+                    <option value="6">ユーザー6</option>
+                    <option value="7">ユーザー7</option>
+                    <option value="8">ユーザー8</option>
+                    <option value="9">ユーザー9</option>
+                    <option value="10">ユーザー10</option>
+                </select>
+            </form>
+            </th>
+        </tr>
+    </table>
+    </div>
 </body>
 </html>
