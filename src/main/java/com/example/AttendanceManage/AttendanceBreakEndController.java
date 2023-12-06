@@ -41,7 +41,7 @@ public class AttendanceBreakEndController {
         LocalTime currentTime = LocalTime.now();
         int userId = myForm.getUserId();
         Time time = Time.valueOf(currentTime.format(dtf));
-        jdbcTemplate.update("INSERT INTO attendances (id,break_end VALUES (?,?)", userId,time);
+        jdbcTemplate.update("INSERT INTO attendances (id,break_end) VALUES (?,?)", userId,time);
         return "redirect:/attendanceList";
     }
 }

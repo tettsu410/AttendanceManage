@@ -8,55 +8,46 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <link rel="stylesheet" href="/style.css" type="text/css"></mata>
 
-    <script type="text/javascript">
-        var now = new Date();
-        var Y = now.getFullYear();
-        var M = now.getMonth() + 1;
-        var D = now.getDate();
-        var W = now.getDay();
-        var DotW = ['日', '月', '火', '水', '木', '金', '土'];
-        document.getElementById('ShowDateYMDW').innerHTML = Y + '年' + M + '月' + D + '日' + '(' + DotW[W] + ')';
-    </script>
-    <script>
-        function twoDigit(num) {
-            let ret;
-            if( num < 10 )
-            ret = "0" + num;
-            else
-            ret = num;
-            return ret;
-        }
 
-        function showClock() {
-            let nowTime = new Date();
-            let nowHour = twoDigit( nowTime.getHours() );
-            let nowMin  = twoDigit( nowTime.getMinutes() );
-            let nowSec  = twoDigit( nowTime.getSeconds() );
-            let msg2 = nowHour + ":" + nowMin + ":" + nowSec;
-            document.getElementById("realtime").innerHTML = msg2;
-        }
-        setInterval('showClock()',1000);
+            <script>
+                function twoDigit(num) {
+                    let ret;
+                    if( num < 10 )
+                    ret = "0" + num;
+                    else
+                    ret = num;
+                    return ret;
+                }
+                function showClock() {
+                    let nowTime = new Date();
+                    let nowHour = twoDigit( nowTime.getHours() );
+                    let nowMin  = twoDigit( nowTime.getMinutes() );
+                    let nowSec  = twoDigit( nowTime.getSeconds() );
+                    let msg2 = nowHour + ":" + nowMin + ":" + nowSec;
+                    document.getElementById("realtime").innerHTML = msg2;
+                }
+                setInterval('showClock()',1000);
 
-        function start() {
-            let form = document.getElementById('startform');
-            form.submit();
-            alert(document.getElementById("realtime").innerHTML + "に出勤しました");
-        }
-        function end() {
-            let form = document.getElementById('endform');
-            form.submit();
-            alert(document.getElementById("realtime").innerHTML + "に退勤しました");
-        }
-        function breakstart() {
-            let form = document.getElementById('breakstartform');
-            form.submit();
-            alert(document.getElementById("realtime").innerHTML + "に休憩開始しました");
-        }
-        function breakend() {
-            let form = document.getElementById('breakendform');
-            form.submit();
-            alert(document.getElementById("realtime").innerHTML + "に休憩終了しました");
-        }
+                function start() {
+                    let form = document.getElementById('startform');
+                    form.submit();
+                    alert(document.getElementById("realtime").innerHTML + "に出勤しました");
+                }
+                function end() {
+                    let form = document.getElementById('endform');
+                    form.submit();
+                    alert(document.getElementById("realtime").innerHTML + "に退勤しました");
+                }
+                function breakstart() {
+                    let form = document.getElementById('breakstart');
+                    form.submit();
+                    alert(document.getElementById("realtime").innerHTML + "に休憩開始しました");
+                }
+                function breakend() {
+                    let form = document.getElementById('breakend');
+                    form.submit();
+                    alert(document.getElementById("realtime").innerHTML + "に休憩終了しました");
+                }
     </script>
 </head>
 
@@ -87,8 +78,28 @@
         }, false);
     </script>
 
-    <div style="text-align: center;"><h2>こんにちは,今日も頑張って下さい</h2><h2 id="realtime">時刻取得中…</h2></div>
+    <div style="text-align: center;"><h2>こんにちは,今日も頑張って下さい</h2>
+        <div style=”line-height: 1;”>
+            <p span id="view_time">日付取得中</span></p>
+            <p id="realtime">時刻取得中…</p>
+        </div>
+        <script type="text/javascript">
+            document.getElementById("view_time").innerHTML = getNow();
 
+            function getNow() {
+                var now = new Date();
+                var year = now.getFullYear();
+                var mon = now.getMonth()+1; //１を足すこと
+                var day = now.getDate();
+
+                //出力用
+                var s = year + "年" + mon + "月" + day + "日";
+                return s;
+            }
+        </script>
+
+
+    </div>
     <div style="text-align: center;">
         <table>
         <tr>
@@ -122,7 +133,7 @@
                     <option value="10">ユーザー10</option>
                 </select>
             </form></th>
-            <th><form id="breakstartform" method="post" action="/attendanceBreakStart">
+            <th><form id="breakstart" method="post" action="/attendanceBreakStart">
                 <button type="button" class="break_start" name="break_start" value="realtime" onclick="breakstart()">休憩開始</button><br>
                 <select name="userId">
                     <option value="1">ユーザー1</option>
@@ -137,7 +148,7 @@
                     <option value="10">ユーザー10</option>
                 </select>
             </form></th>
-            <th><form id="breakendform" method="post" action="/attendanceBreakEnd">
+            <th><form id="breakend" method="post" action="/attendanceBreakEnd">
                 <button type="button" class="break_end" name="break_end" value="realtime" onclick="breakend()">休憩終了</button><br>
                 <select name="userId">
                     <option value="1">ユーザー1</option>
@@ -151,8 +162,7 @@
                     <option value="9">ユーザー9</option>
                     <option value="10">ユーザー10</option>
                 </select>
-            </form>
-            </th>
+            </form></th>
         </tr>
     </table>
     </div>
