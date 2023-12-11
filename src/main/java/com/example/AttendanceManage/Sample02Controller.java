@@ -19,10 +19,11 @@ public class Sample02Controller {
             return "sample01";
         } else {
             // sample01でセットしたセッションのデータを取得
-            String test =  session.getAttribute("test").toString();
+            String id =  session.getAttribute("userId").toString();
+            String name =  session.getAttribute("userName").toString();
 
             // セッションから習得したデータをモデルに追加する（画面へ表示するため）
-            model.addAttribute("user", test);
+            model.addAttribute("user", id + ":" + name);
             return "sample02";
         }
     }
