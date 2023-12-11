@@ -1,5 +1,6 @@
 package com.example.AttendanceManage;
 
+import java.sql.Time;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.DataClassRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -7,9 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-
 import java.util.List;
-import java.sql.Time;
 
 @Controller
 public class JokyoListController {
@@ -18,7 +17,8 @@ public class JokyoListController {
 
     @GetMapping("/jokyoList")
     public String attendances(Model model) {
-        String sql = "SELECT id, date, start_time, end_time, break_start, break_end FROM ATTENDANCES";
+        String sql = "SELECT id,date,start_time,end_time,break_start,break_end FROM ATTENDANCES where id = 1";
+
         List<Attendance> attendances = jdbcTemplate.query(sql,new DataClassRowMapper<>(Attendance.class));
         model.addAttribute("attendances",attendances);
         return "jokyoList";
