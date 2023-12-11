@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規ユーザー作成</title>
+</head>
+<body>
+<h1>新規ユーザー作成</h1>
+
+<form action="/admin/addUser" method="post" th:object="${user}">
+    <label for="名前">名前:</label>
+    <input type="text" id="名前" name="name" th:field="*{name}" required>
+    <br>
+    <label for="ユーザーネーム">ユーザーネーム:</label>
+    <input type="text" id="ユーザーネーム" name="username" th:field="*{username}" required>
+    <br>
+    <label for="メールアドレス">メールアドレス:</label>
+    <input type="email" id="メールアドレス" name="email" th:field="*{email}" required>
+    <br>
+    <button type="submit">作成</button>
+</form>
+
+<a href="/admin">管理画面に戻る</a>
+</body>
+</html>

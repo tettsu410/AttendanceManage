@@ -3,6 +3,7 @@ package com.example.AttendanceManage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class AdministratorController {
     }
 
     @PostMapping("/admin/addUser")
-    public String addUser(User user) {
+    public String addUser(@ModelAttribute User user) {
         // ユーザーの追加処理（データベースへの保存など）を行う
         UserService.addUser(user);
         return "redirect:/admin";
