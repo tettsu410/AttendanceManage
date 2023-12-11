@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class Sample02Controller {
+
+    // Sample01で入力された値を表示します
     @GetMapping("/sample02")
     public String sample01Input(HttpServletRequest request, Model model) {
         // セッションを取得する
