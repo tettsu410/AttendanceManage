@@ -22,6 +22,9 @@ public class Sample01Controller {
         return "sample01";
     }
 
+    // ユーザーIDと名前の入力処理
+    // 引数でsample01のフォームに入力された値を
+    // SampleFormクラスのmyFormオブジェクトに代入して受け取る
     @PostMapping("/sample01")
     public String sample01Input(HttpServletRequest request, @ModelAttribute SampleForm myForm, Model model) {
         //https://qiita.com/NariseT/items/172ca093364aa9391989
