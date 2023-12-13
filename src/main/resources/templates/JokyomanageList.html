@@ -44,7 +44,7 @@
     <th:block th:each="attendance : ${attendances}">
         <tr>
             <td th:text="${attendance.id}"></td>
-            <td th:text="${attendance.date}"></td>
+            <td th:text="${#dates.format(attendance.date, 'yyyy/MM/dd')}"></td>
             <td th:text="${attendance.start_time}"></td>
             <td th:text="${attendance.end_time}"></td>
             <td th:text="${attendance.break_start}"></td>
