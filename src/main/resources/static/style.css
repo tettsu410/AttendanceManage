@@ -28,9 +28,24 @@ h3{
     border-left:solid 9.5px #336899;
     padding-left:10px;
 }
+
+h4{
+    font-size:16pt;
+    color:#000000;
+    border-bottom:solid 3px #336899;
+}
+
 p {
    color:#ffffff;
    font-size: 18px;
+}
+.modalclick {
+  color:#000000;
+  font-size: 20px;
+}
+.click {
+  color:#ffffff;
+  font-size: 20px;
 }
 
 button {
@@ -46,6 +61,11 @@ button {
 .open {
    background: #b4e0d9;
    font-size: 20px;
+}
+.close {
+   background: #b4e0d9;
+   font-size: 20px;
+   padding: 5px 5px;
 }
 .start_time {
    background: #00bfff;　/* 出勤ボタンの色 */
