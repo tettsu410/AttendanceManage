@@ -2,7 +2,7 @@
 
 body{
     background:#333333;   /*背景色*/
-    color:#2c2c2c;           /*文字色*/
+    color:#ffffff;           /*文字色*/
     font-size:11pt;         /*フォントサイズ*/
     line-height:1.6;        /*行の高さ*/
 }
@@ -29,6 +29,25 @@ h3{
     padding-left:10px;
 }
 
+h4{
+    font-size:16pt;
+    color:#000000;
+    border-bottom:solid 3px #336899;
+}
+
+p {
+   color:#ffffff;
+   font-size: 18px;
+}
+.modalclick {
+  color:#000000;
+  font-size: 20px;
+}
+.click {
+  color:#ffffff;
+  font-size: 20px;
+}
+
 button {
   appearance: none;
   border: 2;
@@ -42,6 +61,11 @@ button {
 .open {
    background: #b4e0d9;
    font-size: 20px;
+}
+.close {
+   background: #b4e0d9;
+   font-size: 20px;
+   padding: 5px 5px;
 }
 .start_time {
    background: #00bfff;　/* 出勤ボタンの色 */
@@ -59,7 +83,4 @@ button {
    background: #708090;
    font-size: 40px;
 }
-p {
-   color:#ffffff;
-   font-size: 20px;
-}
+
