@@ -1,8 +1,8 @@
 @charset "utf-8";
 
 body{
-    background:#555555;   /*背景色*/
-    color:#2c2c2c;           /*文字色*/
+    background:#333333;   /*背景色*/
+    color:#ffffff;           /*文字色*/
     font-size:11pt;         /*フォントサイズ*/
     line-height:1.6;        /*行の高さ*/
 }
