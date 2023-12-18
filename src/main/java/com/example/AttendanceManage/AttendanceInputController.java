@@ -6,6 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.sql.Time;
@@ -15,11 +19,18 @@ public class AttendanceInputController {
     private JdbcTemplate jdbcTemplate;
     @PostMapping("/attendanceInput")
     public String attendanceInput(@ModelAttribute AttInForm myForm,Model model){
+        //時刻
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalTime currentTime = LocalTime.now();
-        int userId = myForm.getUserId();
         Time time = Time.valueOf(currentTime.format(dtf));
-        jdbcTemplate.update("INSERT INTO attendances (id,start_time) VALUES (?,?)", userId,time);
+        //日付
+        LocalDate ndate = LocalDate.now();
+        int year = ndate.getYear();
+        int month = ndate.getMonthValue();
+        int day = ndate.getDayOfMonth();
+        int userId = myForm.getUserId();
+        Date date = new Date(year-1900,month-1,day);
+        jdbcTemplate.update("INSERT INTO attendances (id,start_time,date) VALUES (?,?,?)", userId,time,date);
         return "redirect:/attendanceList";
     }
 }

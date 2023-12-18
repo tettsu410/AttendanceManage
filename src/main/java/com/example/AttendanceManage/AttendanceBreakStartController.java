@@ -7,10 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.Time;
+import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
@@ -39,9 +37,14 @@ public class AttendanceBreakStartController {
     public String attendanceBreakStart(@ModelAttribute AttInForm myForm,Model model){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalTime currentTime = LocalTime.now();
+        LocalDate ndate = LocalDate.now();
+        int year = ndate.getYear();
+        int month = ndate.getMonthValue();
+        int day = ndate.getDayOfMonth();
         int userId = myForm.getUserId();
+        Date date = new Date(year-1900,month-1,day);
         Time time = Time.valueOf(currentTime.format(dtf));
-        jdbcTemplate.update("INSERT INTO attendances (id,break_start) VALUES (?,?)", userId,time);
+        jdbcTemplate.update("UPDATE attendances SET break_start=? WHERE id=? AND date=?",time,userId,date);
         return "redirect:/attendanceList";
     }
 }

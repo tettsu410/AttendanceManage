@@ -15,8 +15,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import java.sql.Time;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.Temporal;
+import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -43,9 +50,29 @@ public class AttendanceEndController {
     public String attendanceEnd(@ModelAttribute AttInForm myForm,Model model){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalTime currentTime = LocalTime.now();
+        LocalDate ndate = LocalDate.now();
+        int year = ndate.getYear();
+        int month = ndate.getMonthValue();
+        int day = ndate.getDayOfMonth();
         int userId = myForm.getUserId();
+        Date date = new Date(year-1900,month-1,day);
         Time time = Time.valueOf(currentTime.format(dtf));
-        jdbcTemplate.update("INSERT INTO attendances (id,end_time) VALUES (?,?)", userId,time);
+        jdbcTemplate.update("UPDATE attendances SET end_time=? WHERE id=? AND date=?",time,userId,date);
+
+
+        List<Map<String, Object>> start = jdbcTemplate.queryForList("SELECT start_time FROM attendances WHERE id=? AND date=?",userId,date);
+        //start.forEach(System.out::println);
+        List<Map<String, Object>> end = jdbcTemplate.queryForList("SELECT end_time FROM attendances WHERE id=? AND date=?",userId,date);
+        //end.forEach(System.out::println);
+        System.out.println(start);
+        System.out.println(end);
+
+        //jdbcTemplate.update("SELECT start_time FROM attendances WHERE id=? AND date=?",userId,date);
+        //Period period = Period.between(start.toLocalDate(), end.toLocalDate());
+        //Duration duration = Duration.between(start, time);
+        //System.out.println(duration);
+        //long diff = duration.toHours();
+        //jdbcTemplate.update("UPDATE attendances SET time=? WHERE id=? AND date=?",list,userId,date);
         return "redirect:/attendanceList";
     }
 }
