@@ -58,7 +58,7 @@
         <table height="150">
             <tr>
                 <th>
-                    <h4>メニュー</h4>
+                    <h4 class="black">メニュー</h4>
                 </th>
             </tr>
             <tr>
@@ -99,12 +99,20 @@
         }, false);
     </script>
 
-    <div style="text-align: center;">
-        <h2>こんにちは！今日も頑張って下さい！</h2>
-        <div style=”line-height: 1;”>
-            <p span id="view_time">日付取得中</span></p>
-            <p id="realtime">時刻取得中…</p>
-        </div>
+    <table style="margin:auto">
+        <tr>
+            <th colspan="2">
+                <p>こんにちは！今日も頑張って下さい！</p>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <p class="underbar" span id="view_time">日付取得中</span></p>
+            </th>
+            <th>
+                <p class="underbar" id="realtime">時刻取得中…</p>
+            </th>
+        </tr>
         <script type="text/javascript">
             document.getElementById("view_time").innerHTML = getNow();
             function getNow() {
@@ -114,18 +122,18 @@
                 var day = now.getDate();
 
                 //出力用
-                var date = year + "年" + mon + "月" + day + "日";
+                var date = year + "/" + mon + "/" + day;
                 return date;
             }
         </script>
-    </div>
+    </table>
     
     <table style="margin:auto">
         <tr>
             <th>
                 <form id="startform" method="post" action="/attendanceInput">
                     <button type="button" class="start_time" name="start_time" value="realtime" onclick="start()">　出勤　</button><br>
-                    <select name="userId" class="name_pd1">
+                    <select name="userId">
                         <option value="1">ユーザー1</option>
                         <option value="2">ユーザー2</option>
                         <option value="3">ユーザー3</option>

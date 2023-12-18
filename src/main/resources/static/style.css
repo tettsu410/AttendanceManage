@@ -28,11 +28,18 @@ h3{
     border-left:solid 9.5px #336899;
     padding-left:10px;
 }
-
-h4{
+h4 {
+    font-size:15pt;
+    color:#ffffff;
+}
+.underbar {
     font-size:16pt;
-    color:#000000;
+    color:#ffffff;
     border-bottom:solid 3px #336899;
+}
+.black {
+  color:#000000;
+  border-bottom:solid 3px #336899;
 }
 
 p {
@@ -83,4 +90,3 @@ button {
    background: #708090;
    font-size: 40px;
 }
-

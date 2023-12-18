@@ -2,6 +2,7 @@ package com.example.AttendanceManage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,6 +24,7 @@ import java.time.LocalTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,7 +48,7 @@ public class AttendanceEndController {
 
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate jdbcTemplate;
     @PostMapping("/attendanceEnd")
     public String attendanceEnd(@ModelAttribute AttInForm myForm,Model model){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -57,22 +60,28 @@ public class AttendanceEndController {
         int userId = myForm.getUserId();
         Date date = new Date(year-1900,month-1,day);
         Time time = Time.valueOf(currentTime.format(dtf));
-        jdbcTemplate.update("UPDATE attendances SET end_time=? WHERE id=? AND date=?",time,userId,date);
 
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("userId", userId);
+        params.put("date", date);
+        params.put("end_time", time);
 
-        List<Map<String, Object>> start = jdbcTemplate.queryForList("SELECT start_time FROM attendances WHERE id=? AND date=?",userId,date);
-        //start.forEach(System.out::println);
-        List<Map<String, Object>> end = jdbcTemplate.queryForList("SELECT end_time FROM attendances WHERE id=? AND date=?",userId,date);
-        //end.forEach(System.out::println);
+        // 更新処理
+        jdbcTemplate.update("UPDATE attendances SET end_time=:end_time WHERE id=:userId AND date=:date",params);
+
+        //データの取得
+        params.remove("end_time");
+        String sql = "SELECT start_time FROM attendances WHERE id=:userId AND date=:date";
+        Time start= jdbcTemplate.queryForObject(sql,params,Time.class);
+
+        //List<Map<String, Object>> end = jdbcTemplate.query("SELECT end_time FROM attendances WHERE id=? AND date=?",userId,date);
+
+        Duration totaltime = Duration.between(start.toLocalTime(), time.toLocalTime());
+        System.out.println(totaltime.toHours());
+        System.out.println(totaltime.toMinutes());
+
         System.out.println(start);
-        System.out.println(end);
-
-        //jdbcTemplate.update("SELECT start_time FROM attendances WHERE id=? AND date=?",userId,date);
-        //Period period = Period.between(start.toLocalDate(), end.toLocalDate());
-        //Duration duration = Duration.between(start, time);
-        //System.out.println(duration);
-        //long diff = duration.toHours();
-        //jdbcTemplate.update("UPDATE attendances SET time=? WHERE id=? AND date=?",list,userId,date);
+        System.out.println(time);
         return "redirect:/attendanceList";
     }
 }
