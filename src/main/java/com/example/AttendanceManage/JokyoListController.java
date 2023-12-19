@@ -4,6 +4,8 @@ import java.sql.Time;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.DataClassRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,13 @@ public class JokyoListController {
 
     @GetMapping("/jokyoList")
     public String attendances(Model model) {
+
+        // ログインしているユーザーの情報を取得する。
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        MyUserDetails user = (MyUserDetails) authentication.getPrincipal();
+        System.out.println(user.getId());
+        System.out.println(user.getUsername());
+
         String sql = "SELECT id,date,start_time,end_time,break_start,break_end FROM ATTENDANCES where id = 1";
 
         List<Attendance> attendances = jdbcTemplate.query(sql,new DataClassRowMapper<>(Attendance.class));
