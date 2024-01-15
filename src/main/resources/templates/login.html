@@ -3,24 +3,27 @@
 <head>
     <title>ログインページ</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE-edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
-    <link rel="stylesheet" href="/style.css" type="text/css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/style.css}" type="text/css">
 </head>
 <body>
 <h1>ログインできないログインページ</h1>
-<h4>ログインID</h4>
-<input type="text" id="id">
-<h4>パスワード</h4>
-<input type="password" id="password">
-<p>
-    <select name="User">
-        <option value="user">一般</option>
-        <option value="manage">管理</option>
-    </select>
-</p>
-<p>
-    <a href="attendanceList">ログイン</a>
+<form th:action="@{/login}" method="post" onsubmit="return handleSubmit();">
+
+    <h4>ログインID</h4>
+    <input type="text" id="id" name="username" required>
+    <h4>パスワード</h4>
+    <input type="password" id="password" name="password" required>
+    <p>
+        <select name="role">
+            <option value="user">一般</option>
+            <option value="manage">管理</option>
+        </select>
+    </p>
+    <p>
+        <button type="submit">ログイン</button>
+    </p>
+</form>
 </body>
 </html>

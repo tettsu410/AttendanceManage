@@ -11,7 +11,6 @@ public class LoginController {
     @GetMapping("/login")
     public String jokyoList(@RequestParam(name="name", required=false, defaultValue="test") String name, Model model) {
         model.addAttribute("name", name);
-
         return "login";
     }
 
