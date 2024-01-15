@@ -17,9 +17,9 @@ public class JokyoListController {
 
     @GetMapping("/jokyoList")
     public String attendances(Model model) {
-        String sql = "SELECT id,date,start_time,end_time,break_start,break_end FROM ATTENDANCES where id = 1";
+        String sql = "SELECT id,date,start_time,end_time,break_start,break_end FROM ATTENDANCES where id = ?";
 
-        List<Attendance> attendances = jdbcTemplate.query(sql,new DataClassRowMapper<>(Attendance.class));
+        List<Attendance> attendances = jdbcTemplate.query(sql,new DataClassRowMapper<>(Attendance.class),user.getId);
         model.addAttribute("attendances",attendances);
         return "jokyoList";
     }
