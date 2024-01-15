@@ -69,6 +69,11 @@ button {
   box-shadow: none;
   transform: translateY(5px);
 }
+.login {
+   background: #b4e0d9;
+   font-size: 20px;
+   padding: 5px 5px;
+}
 .open {
    background: #b4e0d9;
    font-size: 20px;

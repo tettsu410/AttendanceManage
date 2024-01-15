@@ -1,27 +1,28 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="/style.css" type="text/css">
 <head>
-    <title>ログインページ</title>
-    <meta charset="utf-8">
+    <title>マイレコーダー</title>
+    <mata charste="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
     <link rel="stylesheet" href="/style.css" type="text/css">
+    </mata>
 </head>
+
 <body>
-    <div style="text-align: center;">
-        <h1>ログイン!</h1>
-        <h4>ログインID</h4>
-        <input type="text" id="id">
-        <h4>パスワード</h4>
-        <input type="password" id="pass">
-        <p>
-        <select name="User">
-            <option value="user">一般</option>
-            <option value="manage">管理</option>
-        </select>
-        </p>
-        <a href="attendanceList">ログイン</a>
-    </div>
+    <form class="form-signin" method="post" th:action="@{/login}">
+        <div style="text-align: center;" class="alert alert-dismissible alert-danger" th:if="${errorMessage}">
+            <p th:text="${errorMessage}"></p>
+        </div>
+        <div style="text-align: center;">
+            <h1 class="form-signin-heading">ログイン</h1>
+            <label for="username" class="sr-only">ユーザーネーム</label><br>
+            <input type="text" id="username" name="username" class="form-control" placeholder="ユーザーネーム"/><br><br>
+            <label for="password" class="sr-only">パスワード</label><br>
+            <input type="password" id="password" name="password" class="form-control" placeholder="パスワード"/><br><br>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
+        </div>
+    </form>
 </body>
 </html>
