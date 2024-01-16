@@ -34,7 +34,7 @@ public class SecurityConfig {
                 .loginPage("/login")
                 //.successHandler(new MyAuthenticationSuccessHandler()) // カスタムの成功ハンドラを指定
                 //ログイン成功時に表示するページ
-                .defaultSuccessUrl("/jokyoList")
+                .defaultSuccessUrl("/attendanceList")
                 .failureUrl("/login?error")
                 .permitAll()
         ).logout(logout -> logout

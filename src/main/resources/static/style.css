@@ -25,7 +25,7 @@ h2{
 h3{
     font-size:14pt;
     color:#ffffff;
-    border-left:solid 9.5px #336899;
+    border-left:solid 9.5px #0071be;
     padding-left:10px;
 }
 h4 {
@@ -35,11 +35,11 @@ h4 {
 .underbar {
     font-size:16pt;
     color:#ffffff;
-    border-bottom:solid 3px #336899;
+    border-bottom:solid 3px #0071be;
 }
 .black {
   color:#000000;
-  border-bottom:solid 3px #336899;
+  border-bottom:solid 3px #0071be;
 }
 
 p {
@@ -84,18 +84,18 @@ button {
    padding: 5px 5px;
 }
 .start_time {
-   background: #00bfff;　/* 出勤ボタンの色 */
+   background: #00a7e3;　/* 出勤ボタンの色 */
    font-size: 40px;
 }
 .end_time {
-   background: #ff4500;　/* 退勤ボタンの色 */
+   background: #e73082;　/* 退勤ボタンの色 */
    font-size: 40px;
 }
 .break_start {
-   background: #708090;
+   background: #f5a200;
    font-size: 40px;
 }
 .break_end {
-   background: #708090;
+   background: #f5a200;
    font-size: 40px;
 }

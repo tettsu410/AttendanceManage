@@ -77,6 +77,7 @@ public class AttendanceEndController {
         //List<Map<String, Object>> end = jdbcTemplate.query("SELECT end_time FROM attendances WHERE id=? AND date=?",userId,date);
 
         Duration totaltime = Duration.between(start.toLocalTime(), time.toLocalTime());
+        //long minusminute = totaltime.toMinutes() - totaltime.toHours() * 60;
         String totaltimeinput = String.valueOf(totaltime.toHours()) +":"+ String.valueOf(totaltime.toMinutes());
         //params.put("userId", userId);
         //params.put("date", date);

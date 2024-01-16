@@ -7,56 +7,55 @@
     <link rel="stylesheet" href="/style.css" type="text/css">
 </head>
 <body>
-<div style="text-align: center">
-    <h1>打刻履歴</h1>
-    <h1>
-        <div id="current_date"></div>
-        <script>
-function updateCurrentDateTime() {
-                const currentDateElement = document.getElementById("current_date");
-                const now = new Date();
-                const year = now.getFullYear();
-                const month = (now.getMonth() + 1).toString().padStart(2, '0');
-                const day = now.getDate().toString().padStart(2, '0');
-                const hour = now.getHours().toString().padStart(2, '0');
-                const minute = now.getMinutes().toString().padStart(2, '0');
-                const second = now.getSeconds().toString().padStart(2, '0');
-                currentDateElement.innerHTML = `${year}/${month}/${day} ${hour}:${minute}:${second}`;
-            }
+    <div style="text-align: center">
+        <h1>打刻履歴</h1>
+        <h2>
+            <div id="current_date"></div>
+            <script>
+                function updateCurrentDateTime() {
+                    const currentDateElement = document.getElementById("current_date");
+                    const now = new Date();
+                    const year = now.getFullYear();
+                    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+                    const day = now.getDate().toString().padStart(2, '0');
+                    const hour = now.getHours().toString().padStart(2, '0');
+                    const minute = now.getMinutes().toString().padStart(2, '0');
+                    const second = now.getSeconds().toString().padStart(2, '0');
+                    currentDateElement.innerHTML = `${year}/${month}/${day} ${hour}:${minute}:${second}`;
+                }
+                setInterval(updateCurrentDateTime, 1000);
+                updateCurrentDateTime();
+            </script>
+        </h2>
+    </div>
 
-            setInterval(updateCurrentDateTime, 1000);
-
-            updateCurrentDateTime();
-        </script>
-    </h1>
-</div>
-
-<table align="center" width="70%" border="1" cellspacing="0">
-    <tr>
-        <th>氏名</th>
-        <th>日付</th>
-        <th>出勤</th>
-        <th>退勤</th>
-        <th>休憩開始</th>
-        <th>休憩終了</th>
-        <th>合計労働時間</th>
-    </tr>
-    <th:block th:each="attendance : ${attendances}">
+    <table align="center" width="70%" border="1" cellspacing="0">
         <tr>
-            <td th:text="${attendance.id}"></td>
-            <td th:text="${#dates.format(attendance.date, 'yyyy/MM/dd')}"></td>
-            <td th:text="${attendance.start_time}"></td>
-            <td th:text="${attendance.end_time}"></td>
-            <td th:text="${attendance.break_start}"></td>
-            <td th:text="${attendance.break_end}"></td>
-            <td th:text="${attendance.totaltime}"></td>
-            <!--<td th:text="${totalTime(attendance.start_time, attendance.end_time, attendance.break_start, attendance.break_end)}"></td> -->
+            <th>氏名</th>
+            <th>日付</th>
+            <th>出勤</th>
+            <th>退勤</th>
+            <th>休憩開始</th>
+            <th>休憩終了</th>
+            <th>合計労働時間</th>
         </tr>
-    </th:block>
-</table>
-<div style="text-align: center;">
-    <br>
-    <a href="attendanceList" class="click">戻る</a>
-</div>
+        <th:block th:each="attendance : ${attendances}">
+            <tr>
+                <td th:text="${attendance.id}"></td>
+                <td th:text="${#dates.format(attendance.date, 'yyyy/MM/dd')}"></td>
+                <td th:text="${attendance.start_time}"></td>
+                <td th:text="${attendance.end_time}"></td>
+                <td th:text="${attendance.break_start}"></td>
+                <td th:text="${attendance.break_end}"></td>
+                <td >合計時間は現在作成中</td>
+                <!--<td th:text="${attendance.totaltime}"></td>
+                <td th:text="${totalTime(attendance.start_time, attendance.end_time, attendance.break_start, attendance.break_end)}"></td> -->
+            </tr>
+        </th:block>
+    </table>
+    <div style="text-align: center;">
+        <br>
+        <a href="attendanceList" class="click">戻る</a>
+    </div>
 </body>
 </html>
