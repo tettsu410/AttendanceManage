@@ -1,0 +1,115 @@
+@charset "utf-8";
+
+body {
+    background: #333333;
+    color: #ffffff;
+    font-size: 11pt;
+    line-height: 1.6;
+}
+
+h1 {
+    background: #ffffff;
+    color: #1a1a1a;
+    font-size: 14px;
+    text-align: center;
+    border-top: solid 2px #e6e6e6;
+    border-left: solid 2px #e6e6e6;
+    border-bottom: solid 3px #787836;
+    border-right: solid 3px #787836;
+}
+
+h2 {
+    color: #ffffff;
+}
+
+h3 {
+    font-size: 14pt;
+    color: #ffffff;
+    border-left: solid 9.5px #0071be;
+    padding-left: 10px;
+}
+
+h4 {
+    font-size: 15pt;
+    color: #ffffff;
+}
+
+.underbar {
+    font-size: 16pt;
+    color: #ffffff;
+    border-bottom: solid 3px #0071be;
+}
+
+.black {
+    color: #000000;
+    border-bottom: solid 3px #0071be;
+}
+
+p {
+    color: #ffffff;
+    font-size: 18px;
+}
+
+a {
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.modalclick {
+    color: #000000;
+    font-size: 20px;
+}
+
+.click {
+    color: #ffffff;
+    font-size: 20px;
+}
+
+button {
+    appearance: none;
+    border: 2;
+    border-radius: 15px;
+    padding: 20px 30px;
+    font-size: 40px;
+    box-shadow: 0 4px 0 #dcdcdc;
+    box-shadow: none;
+    transform: translateY(5px);
+}
+
+.login {
+    background: #b4e0d9;
+    font-size: 20px;
+    padding: 5px 5px;
+}
+
+.open {
+    background: #b4e0d9;
+    font-size: 20px;
+}
+
+.close {
+    background: #b4e0d9;
+    font-size: 20px;
+    padding: 5px 5px;
+}
+
+.start_time {
+    background: #00a7e3;
+    font-size: 40px;
+}
+
+.end_time {
+    background: #e73082;
+    font-size: 40px;
+}
+
+.break_start {
+    background: #f5a200;
+    font-size: 40px;
+}
+
+.break_end {
+    background: #f5a200;
+    font-size: 40px;
+}
+

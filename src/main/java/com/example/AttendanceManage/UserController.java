@@ -1,35 +1,36 @@
 package com.example.AttendanceManage;
 
-// UserController.java
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 
 @Controller
 public class UserController {
 
-    private List<User> userList = new ArrayList<>();
-
-    @GetMapping("/admin")
-    public String adminPage(Model model) {
-        model.addAttribute("users", userList);
-        return "admin";
+    @GetMapping("/user")
+    public String showUserPage() {
+        return "user";
     }
 
-    @GetMapping("/admin/addUser")
-    public String showAddUserForm(Model model) {
-        model.addAttribute("user", new User());
-        return "addUser";
-    }
-
-    @PostMapping("/admin/addUser")
-    public String addUser(User user) {
-        userList.add(user);
-        return "redirect:/admin";
+    @PostMapping("/userManagement")
+    public String userManagement(@RequestParam String action,
+                                 @RequestParam String name,
+                                 @RequestParam String pass,
+                                 @RequestParam String userId,
+                                 Model model) {
+        UserManagement userManagement = new UserManagement();
+        try {
+            userManagement.doPost(action, name, pass, userId);
+            model.addAttribute("message", "Action completed successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            model.addAttribute("message", "Error performing action.");
+        }
+        return "user";
     }
 }
 

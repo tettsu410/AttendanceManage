@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Management System</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/user.css">
+
+</head>
+<body>
+    <h1>User Management System</h1>
+
+    <form action="/userManagement" method="post">
+        <input type="hidden" name="action" value="create">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="pass">Password:</label>
+        <input type="password" id="pass" name="pass" required>
+
+        <input type="submit" value="Create User">
+    </form>
+
+    <form action="/userManagement" method="post">
+        <input type="hidden" name="action" value="delete">
+        <label for="userId">User ID to Delete:</label>
+        <input type="number" id="userId" name="userId" required>
+
+        <input type="submit" value="Delete User">
+    </form>
+
+    <p th:text="${message}"></p>
+</body>
+</html>
