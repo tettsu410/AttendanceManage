@@ -1,31 +1,19 @@
 package com.example.AttendanceManage;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.sql.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.Temporal;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -51,13 +39,18 @@ public class AttendanceEndController {
     private NamedParameterJdbcTemplate jdbcTemplate;
     @PostMapping("/attendanceEnd")
     public String attendanceEnd(@ModelAttribute AttInForm myForm,Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        MyUserDetails user = (MyUserDetails) authentication.getPrincipal();
+        System.out.println(user.getId());
+        System.out.println(user.getUsername());
+
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalTime currentTime = LocalTime.now();
         LocalDate ndate = LocalDate.now();
         int year = ndate.getYear();
         int month = ndate.getMonthValue();
         int day = ndate.getDayOfMonth();
-        int userId = myForm.getUserId();
+        int userId = user.getId();
         Date date = new Date(year-1900,month-1,day);
         Time time = Time.valueOf(currentTime.format(dtf));
 
@@ -70,7 +63,7 @@ public class AttendanceEndController {
         jdbcTemplate.update("UPDATE attendances SET end_time=:end_time WHERE id=:userId AND date=:date",params);
 
         //データの取得
-        params.remove("end_time");
+        /*params.remove("end_time");
         String sql = "SELECT start_time FROM attendances WHERE id=:userId AND date=:date";
         Time start= jdbcTemplate.queryForObject(sql,params,Time.class);
 
@@ -86,7 +79,7 @@ public class AttendanceEndController {
         jdbcTemplate.update("UPDATE attendances SET totaltime=:totaltimeinput WHERE id=:userId AND date=:date",params);
 
         //System.out.println(start);
-        //System.out.println(time);
+        //System.out.println(time);*/
         return "redirect:/attendanceList";
     }
 }
