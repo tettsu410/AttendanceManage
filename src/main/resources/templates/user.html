@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <mata charste="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="/style.css" type="text/css">
+    </mata>
+
+</head>
+<body>
+    <div style="text-align: center">
+        <h1>勤怠管理「AttendanceManage」</h1>
+        <h2 class="form-signin-heading">User Management System</h2>
+    </div>
+
+    <div style="text-align: center">
+        <form action="/userManagement" method="post">
+            <input type="hidden" name="action" value="create">
+            <label for="name">Name</label><br>
+            <input type="text" id="name" name="name" required>
+            <br>
+            <label for="pass">Password</label><br>
+            <input type="password" id="pass" name="pass" required>
+            <br>
+            <input class="login" type="submit" value="Create User">
+        </form>
+        <br><br>
+        <form action="/userManagement" method="post">
+            <input type="hidden" name="action" value="delete">
+            <label for="userId">User ID to Delete</label><br>
+            <input type="number" id="userId" name="userId" required>
+            <br>
+            <input class="login" type="submit" value="Delete User">
+        </form>
+        <p th:text="${message}"></p>
+        <a href="login" class="click">ログイン画面へ</a>
+    </div>
+</body>
+</html>

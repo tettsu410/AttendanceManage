@@ -1,14 +1,16 @@
 package com.example.AttendanceManage;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
 public class User {
     private int id;
     private String username;
     private String pass;
 
-    public int getId() {
-        return id;
-    }
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     public void setId(int id) {
         this.id = id;
@@ -28,5 +30,8 @@ public class User {
 
     public void setPass(String pass) {
         this.pass = pass;
+    }
+    public int getId() {
+        return id;
     }
 }

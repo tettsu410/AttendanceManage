@@ -52,8 +52,28 @@
 </head>
 
 <body>
-    <h1>勤怠管理「AttendanceManage」</h1>
-    <h3>株式会社 ヒューマンアカデミー</h3>
+    <div style="text-align: center">
+        <h1>勤怠管理「AttendanceManage」</h1>
+        <h2>
+            <div id="current_date"></div>
+            <script>
+                function updateCurrentDateTime() {
+                    const currentDateElement = document.getElementById("current_date");
+                    const now = new Date();
+                    const year = now.getFullYear();
+                    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+                    const day = now.getDate().toString().padStart(2, '0');
+                    const hour = now.getHours().toString().padStart(2, '0');
+                    const minute = now.getMinutes().toString().padStart(2, '0');
+                    const second = now.getSeconds().toString().padStart(2, '0');
+                    currentDateElement.innerHTML = `${year}/${month}/${day} ${hour}:${minute}:${second}`;
+                }
+                setInterval(updateCurrentDateTime, 1000);
+                updateCurrentDateTime();
+            </script>
+        </h2>
+    </div>
+    <h3>株式会社 ヒューマンアカデミ、{{ username }} さん</h3>
     <dialog>
         <table height="150">
             <tr>
@@ -105,14 +125,14 @@
                 <p>こんにちは！今日も頑張って下さい！</p>
             </th>
         </tr>
-        <tr>
+        <!--<tr>
             <th>
                 <p class="underbar" span id="view_time">日付取得中</span></p>
             </th>
             <th>
                 <p class="underbar" id="realtime">時刻取得中…</p>
             </th>
-        </tr>
+        </tr>-->
         <script type="text/javascript">
             document.getElementById("view_time").innerHTML = getNow();
             function getNow() {

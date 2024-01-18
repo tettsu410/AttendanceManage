@@ -11,17 +11,27 @@
 </head>
 
 <body>
+<div style="text-align: center">
+    <h1>勤怠管理「AttendanceManage」</h1>
+</div>
     <form class="form-signin" method="post" th:action="@{/login}">
         <div style="text-align: center;" class="alert alert-dismissible alert-danger" th:if="${errorMessage}">
             <p th:text="${errorMessage}"></p>
         </div>
         <div style="text-align: center;">
-            <h1 class="form-signin-heading">ログイン</h1>
+            <h2 class="form-signin-heading">ログイン</h2>
+        </div>
+        <br><br>
+        <div style="text-align: center;">
             <label for="username" class="sr-only">ユーザーネーム</label><br>
             <input type="text" id="username" name="username" class="form-control" placeholder="ユーザーネーム"/><br><br>
             <label for="password" class="sr-only">パスワード</label><br>
             <input type="password" id="password" name="password" class="form-control" placeholder="パスワード"/><br><br>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
+            <button class="login" type="submit">ログイン</button>
+        </div>
+        <div style="text-align: center;">
+            <br>
+            <a href="user" class="click">新規登録</a>
         </div>
     </form>
 </body>

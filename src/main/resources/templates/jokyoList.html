@@ -8,7 +8,7 @@
 </head>
 <body>
     <div style="text-align: center">
-        <h1>打刻履歴</h1>
+        <h1>勤怠管理「AttendanceManage」</h1>
         <h2>
             <div id="current_date"></div>
             <script>
@@ -28,27 +28,28 @@
             </script>
         </h2>
     </div>
+    <h3>打刻履歴</h3>
 
     <table align="center" width="70%" border="1" cellspacing="0">
         <tr>
-            <th>氏名</th>
+            <th>ID</th>
             <th>日付</th>
             <th>出勤</th>
             <th>退勤</th>
             <th>休憩開始</th>
             <th>休憩終了</th>
-            <th>合計労働時間</th>
+            <!--<th>合計労働時間</th>-->
         </tr>
         <th:block th:each="attendance : ${attendances}">
             <tr>
-                <td th:text="${attendance.id}"></td>
-                <td th:text="${#dates.format(attendance.date, 'yyyy/MM/dd')}"></td>
-                <td th:text="${attendance.start_time}"></td>
-                <td th:text="${attendance.end_time}"></td>
-                <td th:text="${attendance.break_start}"></td>
-                <td th:text="${attendance.break_end}"></td>
-                <td >合計時間は現在作成中</td>
-                <!--<td th:text="${attendance.totaltime}"></td>
+                <td align="center" th:text="${attendance.id}"></td>
+                <td align="center" th:text="${#dates.format(attendance.date, 'yyyy/MM/dd')}"></td>
+                <td align="center" th:text="${attendance.start_time}"></td>
+                <td align="center" th:text="${attendance.end_time}"></td>
+                <td align="center" th:text="${attendance.break_start}"></td>
+                <td align="center" th:text="${attendance.break_end}"></td>
+                <!--<td >合計時間は現在作成中</td>
+                <td th:text="${attendance.totaltime}"></td>
                 <td th:text="${totalTime(attendance.start_time, attendance.end_time, attendance.break_start, attendance.break_end)}"></td> -->
             </tr>
         </th:block>

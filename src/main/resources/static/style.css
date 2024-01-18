@@ -20,7 +20,10 @@ h1{
 }
 /*会社名*/
 h2{
+    margin:0;
+    font-size:30pt;
     color:#ffffff;
+    border-bottom:solid 3px #0071be;
 }
 h3{
     font-size:14pt;
@@ -29,8 +32,14 @@ h3{
     padding-left:10px;
 }
 h4 {
+    margin:0;
     font-size:15pt;
     color:#ffffff;
+}
+.login {
+   background: #b4e0d9;
+   font-size: 20px;
+   padding: 5px 5px;
 }
 .underbar {
     font-size:16pt;
@@ -85,17 +94,17 @@ button {
 }
 .start_time {
    background: #00a7e3;　/* 出勤ボタンの色 */
-   font-size: 40px;
+   font-size: 45px;
 }
 .end_time {
    background: #e73082;　/* 退勤ボタンの色 */
-   font-size: 40px;
+   font-size: 45px;
 }
 .break_start {
-   background: #f5a200;
+   background: #C0C0C0;
    font-size: 40px;
 }
 .break_end {
-   background: #f5a200;
+   background: #C0C0C0;
    font-size: 40px;
 }
