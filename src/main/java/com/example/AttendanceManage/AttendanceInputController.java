@@ -22,9 +22,6 @@ public class AttendanceInputController {
     public String attendanceInput(@ModelAttribute AttInForm myForm,Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         MyUserDetails user = (MyUserDetails) authentication.getPrincipal();
-        System.out.println(user.getId());
-        System.out.println(user.getUsername());
-
         //時刻
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalTime currentTime = LocalTime.now();

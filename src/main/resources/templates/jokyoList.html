@@ -8,7 +8,7 @@
 </head>
 <body>
     <div style="text-align: center">
-        <h1>勤怠管理「AttendanceManage」</h1>
+        <h1>勤怠管理「Time Manager」</h1>
         <h2>
             <div id="current_date"></div>
             <script>
@@ -28,7 +28,64 @@
             </script>
         </h2>
     </div>
-    <h3>打刻履歴</h3>
+    <h3>株式会社 ヒューマンアカデミー</h3>
+    <dialog>
+        <table height="150">
+            <tr>
+                <th>
+                    <h4 class="black">メニュー</h4>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <a href="jokyoList" class="modalclick">勤怠状況一覧表示</a>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <a href="place" class="modalclick">勤務場所登録</a>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <a href="contactAddress" class="modalclick">連絡先登録</a>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <a href="login" class="modalclick">ログアウト</a>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <div style="text-align: center;">
+                        <button id="close" class="close"> 閉じる</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </dialog>
+    <!-- モーダルウィンドウ内を開くボタンの指定 -->
+    <div style="text-align: right;">
+        <button id="open" class="open">メニュー</button>
+    </div>
+
+    <script>
+        let dialog = document.querySelector('dialog'); // dialog（モーダルダイアログ）の宣言
+        let btn_open = document.getElementById('open'); // open（開く）ボタンの宣言
+        let btn_close = document.getElementById('close'); // close（閉じる）ボタンの宣言
+        btn_open.addEventListener('click', function() {
+        // 開くボタンをクリックした場合の処理
+        dialog.showModal();
+        }, false);
+        btn_close.addEventListener('click', function() {
+        // 閉じるボタンをクリックした場合の処理
+        dialog.close();
+        }, false);
+    </script>
+    <div style="text-align: center">
+        <h4>打刻履歴</h4>
+    </div>
 
     <table align="center" width="70%" border="1" cellspacing="0">
         <tr>

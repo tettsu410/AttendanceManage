@@ -12,7 +12,7 @@
 
 <body>
 <div style="text-align: center">
-    <h1>勤怠管理「AttendanceManage」</h1>
+    <h1>勤怠管理「Time Manager」</h1>
 </div>
     <form class="form-signin" method="post" th:action="@{/login}">
         <div style="text-align: center;" class="alert alert-dismissible alert-danger" th:if="${errorMessage}">
@@ -20,8 +20,10 @@
         </div>
         <div style="text-align: center;">
             <h2 class="form-signin-heading">ログイン</h2>
+            <br><br>
+            <h4>Time Managerへようこそ!</h4>
         </div>
-        <br><br>
+        <br>
         <div style="text-align: center;">
             <label for="username" class="sr-only">ユーザーネーム</label><br>
             <input type="text" id="username" name="username" class="form-control" placeholder="ユーザーネーム"/><br><br>
@@ -32,6 +34,8 @@
         <div style="text-align: center;">
             <br>
             <a href="user" class="click">新規登録</a>
+            <br><br><br><br>
+            <p>Time Manager<br>Created by HA神戸三宮校<br>Team:Squad Core5</p>
         </div>
     </form>
 </body>
