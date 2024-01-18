@@ -18,13 +18,12 @@ import java.util.List;
 public class JokyoListController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
-
     @GetMapping("/jokyoList")
     public String attendances(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         MyUserDetails user = (MyUserDetails) authentication.getPrincipal();
         System.out.println(user.getId());
-        System.out.println(user.getUsername());
+        //System.out.println(user.getUsername());
 
         String sql = "SELECT id,date,start_time,end_time,break_start,break_end FROM ATTENDANCES where id = ?";
 
